@@ -11,6 +11,14 @@ This project is a app Android Native with kotlin language. The main objective of
 ## Tecnologias
 - Activity
 - Compose
+  - Column
+  - Row
+  - Modifier
+  - Spacer
+  - LazyRows
+  - ComposePreview
+  - NavHostController
+  - AsyncImage  
 - Retrofit2
 - ViewModel
 - MutableStateFlow
@@ -18,7 +26,8 @@ This project is a app Android Native with kotlin language. The main objective of
 - Log
 - Suspend routines
 - Launch
-
+- TMDB API
+- Okhttp3
 
 
 ## License
