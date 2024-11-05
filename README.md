@@ -5,8 +5,7 @@ This project is a app Android Native with kotlin language. The main objective of
 <!-- You can add more screenshots here if you like -->
 <img src="https://github.com/user-attachments/assets/87773b49-f22c-4ad1-a130-c0dafe32909a" width=200/>
 <img src="https://github.com/user-attachments/assets/32707f3d-fd46-42f0-9fa8-15c816474d42" width=200/>
-![Screenshot_20241105_130431](https://github.com/user-attachments/assets/87773b49-f22c-4ad1-a130-c0dafe32909a)
-![Screenshot_20241105_130517](https://github.com/user-attachments/assets/32707f3d-fd46-42f0-9fa8-15c816474d42)
+
 
 
 ## Tecnologias
