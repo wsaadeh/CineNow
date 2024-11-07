@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.saadeh.cinenow.common.model.MovieDto
 import com.saadeh.cinenow.list.presentation.MovieListViewModel
 
 @Composable
@@ -52,9 +51,9 @@ fun MovieListScreen(navController: NavHostController,
 @Composable
 private fun MovieListContent(
     nowPlayingMovies: MovieListUiState,
-    popularMovies: List<MovieDto>,
-    topRatedMovies: List<MovieDto>,
-    upcomingMovies: List<MovieDto>,
+    popularMovies: MovieListUiState,
+    topRatedMovies: MovieListUiState,
+    upcomingMovies: MovieListUiState,
     onClick: (MovieUiData) -> Unit,
 ) {
     Column(
@@ -76,23 +75,23 @@ private fun MovieListContent(
             onClick = onClick
         )
 
-//        MovieSession(
-//            label = "Popular",
-//            movieList = popularMovies,
-//            onClick = onClick
-//        )
-//
-//        MovieSession(
-//            label = "Top Rated",
-//            movieList = topRatedMovies,
-//            onClick = onClick
-//        )
-//
-//        MovieSession(
-//            label = "Upcoming",
-//            movieList = upcomingMovies,
-//            onClick = onClick
-//        )
+        MovieSession(
+            label = "Popular",
+            movieListUiState = popularMovies,
+            onClick = onClick
+        )
+
+        MovieSession(
+            label = "Top Rated",
+            movieListUiState = topRatedMovies,
+            onClick = onClick
+        )
+
+        MovieSession(
+            label = "Upcoming",
+            movieListUiState = upcomingMovies,
+            onClick = onClick
+        )
     }
 }
 
