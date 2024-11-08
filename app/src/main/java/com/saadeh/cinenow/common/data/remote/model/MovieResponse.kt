@@ -1,4 +1,4 @@
-package com.saadeh.cinenow.common.model
+package com.saadeh.cinenow.common.data.remote.model
 
 
 //@kotlinx.serialization.Serializable

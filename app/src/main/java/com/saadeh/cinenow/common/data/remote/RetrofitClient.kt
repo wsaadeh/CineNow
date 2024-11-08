@@ -1,4 +1,4 @@
-package com.saadeh.cinenow.common.data
+package com.saadeh.cinenow.common.data.remote
 
 import com.saadeh.cinenow.BuildConfig
 import okhttp3.OkHttpClient

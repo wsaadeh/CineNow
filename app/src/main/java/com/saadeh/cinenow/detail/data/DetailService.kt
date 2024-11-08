@@ -1,6 +1,6 @@
 package com.saadeh.cinenow.detail.data
 
-import com.saadeh.cinenow.common.model.MovieDto
+import com.saadeh.cinenow.common.data.remote.model.MovieDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

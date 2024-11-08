@@ -3,10 +3,12 @@ package com.saadeh.cinenow.list.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.saadeh.cinenow.common.data.RetrofitClient
-import com.saadeh.cinenow.list.data.ListService
+import com.saadeh.cinenow.CineNowApplication
+import com.saadeh.cinenow.common.data.remote.RetrofitClient
+import com.saadeh.cinenow.list.data.remote.ListService
 import com.saadeh.cinenow.list.data.MovieListRepository
 import com.saadeh.cinenow.list.presentation.ui.MovieListUiState
 import com.saadeh.cinenow.list.presentation.ui.MovieUiData
@@ -49,14 +51,14 @@ class MovieListViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.getNowPlaying()
             if (response.isSuccess) {
-                val movies = response.getOrNull()?.results
+                val movies = response.getOrNull()
                 if (movies != null) {
                     val movieUiDataList = movies.map { movieDto ->
                         MovieUiData(
                             id = movieDto.id,
                             title = movieDto.title,
                             overview = movieDto.overview,
-                            image = movieDto.posterFullPath
+                            image = movieDto.image
                         )
                     }
                     _uiNowPlaying.value = MovieListUiState(list = movieUiDataList)
@@ -178,8 +180,9 @@ class MovieListViewModel(
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
                 val listService = RetrofitClient.retrofitInstance.create(ListService::class.java)
 
+                val application = checkNotNull(extras[APPLICATION_KEY])
                 return MovieListViewModel(
-                    repository = MovieListRepository(listService)
+                    repository = (application as CineNowApplication).repository
                 ) as T
             }
         }
