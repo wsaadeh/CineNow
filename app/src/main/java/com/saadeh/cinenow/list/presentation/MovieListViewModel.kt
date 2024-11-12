@@ -84,14 +84,14 @@ class MovieListViewModel(
 
             val response = repository.getPopular()
             if (response.isSuccess) {
-                val movies = response.getOrNull()?.results
+                val movies = response.getOrNull()
                 if (movies != null) {
                     val movieUiDataList = movies.map { movieDto ->
                         MovieUiData(
                             id = movieDto.id,
                             title = movieDto.title,
                             overview = movieDto.overview,
-                            image = movieDto.posterFullPath,
+                            image = movieDto.image,
                         )
                     }
                     _uiPopular.value = MovieListUiState(list = movieUiDataList)
@@ -116,14 +116,14 @@ class MovieListViewModel(
 
             val response = repository.getTopRated()
             if (response.isSuccess) {
-                val movies = response.getOrNull()?.results
+                val movies = response.getOrNull()
                 if (movies != null) {
                     val movieUiListData = movies.map { movieDto ->
                         MovieUiData(
                             id = movieDto.id,
                             title = movieDto.title,
                             overview = movieDto.overview,
-                            image = movieDto.posterFullPath,
+                            image = movieDto.image,
                         )
                     }
                     _uiTopRated.value = MovieListUiState(list = movieUiListData)
@@ -148,14 +148,14 @@ class MovieListViewModel(
 
             val response = repository.getUpcoming()
             if (response.isSuccess) {
-                val movies = response.getOrNull()?.results
+                val movies = response.getOrNull()
                 if (movies != null) {
                     val movieUiListData = movies.map { movieDto ->
                         MovieUiData(
                             id = movieDto.id,
                             title = movieDto.title,
                             overview = movieDto.overview,
-                            image = movieDto.posterFullPath,
+                            image = movieDto.image,
                         )
                     }
                     _uiUpcoming.value = MovieListUiState(list = movieUiListData)
