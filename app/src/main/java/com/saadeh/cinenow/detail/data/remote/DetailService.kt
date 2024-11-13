@@ -1,4 +1,4 @@
-package com.saadeh.cinenow.detail.data
+package com.saadeh.cinenow.detail.data.remote
 
 import com.saadeh.cinenow.common.data.remote.model.MovieDto
 import retrofit2.Response

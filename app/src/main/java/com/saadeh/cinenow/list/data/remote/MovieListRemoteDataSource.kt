@@ -3,7 +3,7 @@ package com.saadeh.cinenow.list.data.remote
 import android.accounts.NetworkErrorException
 import com.saadeh.cinenow.common.data.local.MovieCategory
 import com.saadeh.cinenow.common.data.model.Movie
-import com.saadeh.cinenow.common.data.remote.model.MovieResponse
+
 
 class MovieListRemoteDataSource(
     private val listService: ListService

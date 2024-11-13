@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.saadeh.cinenow.common.data.model.Movie
 import com.saadeh.cinenow.common.data.remote.model.MovieDto
 import com.saadeh.cinenow.detail.presentation.MovieDetailViewModel
 import com.saadeh.cinenow.ui.theme.CineNowTheme
@@ -66,7 +67,7 @@ fun MovieDetailScreen(
 }
 
 @Composable
-private fun MovieDetailContent(movie: MovieDto) {
+private fun MovieDetailContent(movie: Movie) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -75,7 +76,7 @@ private fun MovieDetailContent(movie: MovieDto) {
                 .height(300.dp)
                 .fillMaxSize(),
             contentScale = ContentScale.Fit,
-            model = movie.posterFullPath,
+            model = movie.image,
             contentDescription = "${movie.title} Poster image"
         )
         Text(
@@ -91,13 +92,14 @@ private fun MovieDetailContent(movie: MovieDto) {
 @Composable
 private fun MovieDetailPreview(modifier: Modifier = Modifier) {
     CineNowTheme {
-        val movie = MovieDto(
+        val movie = Movie(
             id = 9,
             title = "Title",
-            posterPath = "123",
+            image = "123",
             overview = "Long overview movieLong overview movieLong overview movie" +
                     "Long overview movieLong overview movieLong overview movie" +
-                    "Long overview movieLong overview movieLong overview movie"
+                    "Long overview movieLong overview movieLong overview movie",
+            category = ""
         )
         MovieDetailContent(movie = movie)
     }

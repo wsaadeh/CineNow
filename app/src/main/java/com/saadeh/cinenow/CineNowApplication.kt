@@ -4,6 +4,10 @@ import android.app.Application
 import androidx.room.Room
 import com.saadeh.cinenow.common.data.remote.RetrofitClient
 import com.saadeh.cinenow.common.data.local.CineNowDatabase
+import com.saadeh.cinenow.detail.data.MovieDetailRepository
+import com.saadeh.cinenow.detail.data.local.MovieDetailLocalDataSource
+import com.saadeh.cinenow.detail.data.remote.DetailService
+import com.saadeh.cinenow.detail.data.remote.MovieDetailRemoteDataSource
 import com.saadeh.cinenow.list.data.MovieListRepository
 import com.saadeh.cinenow.list.data.local.MovieListLocalDataSource
 import com.saadeh.cinenow.list.data.remote.ListService
@@ -21,6 +25,10 @@ class CineNowApplication: Application() {
         RetrofitClient.retrofitInstance.create(ListService::class.java)
     }
 
+    private val detailService by lazy {
+        RetrofitClient.retrofitInstance.create(DetailService::class.java)
+    }
+
     private val localDataSource: MovieListLocalDataSource by lazy {
         MovieListLocalDataSource(db.getMovieDao())
     }
@@ -33,6 +41,21 @@ class CineNowApplication: Application() {
         MovieListRepository(
             local = localDataSource,
             remote = remoteDataSource
+        )
+    }
+
+    private val localDetailDataSource: MovieDetailLocalDataSource by lazy {
+        MovieDetailLocalDataSource(db.getMovieDao())
+    }
+
+    private val remoteDetailDataSource: MovieDetailRemoteDataSource by lazy {
+        MovieDetailRemoteDataSource(detailService)
+    }
+
+    val repDetail: MovieDetailRepository by lazy {
+        MovieDetailRepository(
+            localDataSource = localDetailDataSource,
+            remoteDataSource = remoteDetailDataSource
         )
     }
 }
