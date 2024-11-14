@@ -12,6 +12,7 @@ import com.saadeh.cinenow.list.data.remote.ListService
 import com.saadeh.cinenow.list.data.MovieListRepository
 import com.saadeh.cinenow.list.presentation.ui.MovieListUiState
 import com.saadeh.cinenow.list.presentation.ui.MovieUiData
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +20,8 @@ import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 
 class MovieListViewModel(
-    private val repository: MovieListRepository
+    private val repository: MovieListRepository,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
     private val _uiNowPlaying = MutableStateFlow(MovieListUiState())
@@ -48,7 +50,7 @@ class MovieListViewModel(
 
     private fun fetchNowPlayingMovies() {
         _uiNowPlaying.value = MovieListUiState(isLoading = true)
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             val response = repository.getNowPlaying()
             if (response.isSuccess) {
                 val movies = response.getOrNull()
@@ -80,7 +82,7 @@ class MovieListViewModel(
 
     private fun fetchPopularMovies() {
         _uiPopular.value = MovieListUiState(isLoading = true)
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
 
             val response = repository.getPopular()
             if (response.isSuccess) {
@@ -112,7 +114,7 @@ class MovieListViewModel(
 
     private fun fetchTopRatedMovies() {
         _uiTopRated.value = MovieListUiState(isLoading = true)
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
 
             val response = repository.getTopRated()
             if (response.isSuccess) {
@@ -144,7 +146,7 @@ class MovieListViewModel(
 
     private fun fetchUpcomingMovies() {
         _uiUpcoming.value = MovieListUiState(isLoading = true)
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
 
             val response = repository.getUpcoming()
             if (response.isSuccess) {
