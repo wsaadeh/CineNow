@@ -9,7 +9,7 @@ import com.saadeh.cinenow.list.data.remote.ListService
 import com.saadeh.cinenow.list.data.remote.MovieListRemoteDataSource
 
 class MovieListRepository(
-    private val local: MovieListLocalDataSource,
+    private val local: LocalDataSource,//MovieListLocalDataSource,
     private val remote: MovieListRemoteDataSource,
 ) {
     suspend fun getNowPlaying(): Result<List<Movie>?> {

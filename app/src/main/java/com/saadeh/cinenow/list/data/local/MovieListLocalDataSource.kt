@@ -4,28 +4,29 @@ import com.saadeh.cinenow.common.data.local.MovieCategory
 import com.saadeh.cinenow.common.data.local.MovieDao
 import com.saadeh.cinenow.common.data.local.MovieEntity
 import com.saadeh.cinenow.common.data.model.Movie
+import com.saadeh.cinenow.list.data.LocalDataSource
 
 class MovieListLocalDataSource(
     private val dao: MovieDao
-) {
+) : LocalDataSource {
 
-    suspend fun getNowPLayingMovies(): List<Movie> {
+    override suspend fun getNowPLayingMovies(): List<Movie> {
         return getMoviesByCategory(MovieCategory.NowPlaying)
     }
 
-    suspend fun getPopularMovies(): List<Movie> {
+    override suspend fun getPopularMovies(): List<Movie> {
         return getMoviesByCategory(MovieCategory.Popular)
     }
 
-    suspend fun getTopRatedMovies(): List<Movie> {
+    override suspend fun getTopRatedMovies(): List<Movie> {
         return getMoviesByCategory(MovieCategory.TopRated)
     }
 
-    suspend fun getUpcomingMovies(): List<Movie> {
+    override suspend fun getUpcomingMovies(): List<Movie> {
         return getMoviesByCategory(MovieCategory.Upcoming)
     }
 
-    suspend fun  updateLocalItems(movies:List<Movie>){
+    override suspend fun updateLocalItems(movies: List<Movie>) {
         val entities = movies.map {
             MovieEntity(
                 id = it.id,
