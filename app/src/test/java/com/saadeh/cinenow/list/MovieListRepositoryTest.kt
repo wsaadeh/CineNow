@@ -22,7 +22,7 @@ import java.security.InvalidKeyException
 
 class MovieListRepositoryTest {
 
-    //    private val local: MovieListLocalDataSource = mock()
+    //private val localm: MovieListLocalDataSource = mock()
     private val local = FakeMovieListLocalDataSource()
     private val remote: MovieListRemoteDataSource = mock()
 
@@ -38,6 +38,7 @@ class MovieListRepositoryTest {
     fun `Given no internet connection when getting now playing movies then return local data`() {
         runTest(UnconfinedTestDispatcher()) {
             //Given
+            val ex = Result.failure<List<Movie>>(UnknownHostException("No internet connection"))
             val localList = listOf(
                 Movie(
                     id = 1,
@@ -47,14 +48,16 @@ class MovieListRepositoryTest {
                     category = MovieCategory.NowPlaying.name
                 )
             )
-            whenever(remote.getNowPlaying()).thenReturn(Result.failure(UnknownHostException("No internet connection")))
+            whenever(remote.getNowPlaying()).thenReturn(ex)
             local.nowPlaying = localList
-//            whenever(local.getNowPLayingMovies()).thenReturn(localList)
+            //whenever(localm.getNowPLayingMovies()).thenReturn(localList)
             //Then
             val result = underTest.getNowPlaying()
             //When
             val expected = Result.success(localList)
+            //val expected = ex
             assertEquals(expected, result)
+
         }
     }
 
