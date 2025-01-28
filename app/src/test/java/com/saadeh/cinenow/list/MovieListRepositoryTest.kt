@@ -33,6 +33,62 @@ class MovieListRepositoryTest {
         )
     }
 
+    @Test
+    fun `Given throw exception when getting now playng movies`(){
+        runTest {
+            //Given
+            val ex = Result.failure<List<Movie>>(UnknownHostException("No internet connection"))
+            whenever(remote.getNowPlaying()).thenReturn(ex)
+            //Then
+            val result = underTest.getNowPlaying()
+            //When
+            val expected = ex
+            assertEquals(expected,result)
+        }
+    }
+
+    @Test
+    fun `Given throw exception when getting popular movies`(){
+        runTest {
+            //Given
+            val ex = Result.failure<List<Movie>>(UnknownHostException("No internet connection"))
+            whenever(remote.getPopular()).thenReturn(ex)
+            //Then
+            val result = underTest.getPopular()
+            //When
+            val expected = ex
+            assertEquals(expected,result)
+        }
+    }
+
+    @Test
+    fun `Given throw exception when getting toprated movies`(){
+        runTest {
+            //Given
+            val ex = Result.failure<List<Movie>>(UnknownHostException("No internet connection"))
+            whenever(remote.getTopRated()).thenReturn(ex)
+            //Then
+            val result = underTest.getTopRated()
+            //When
+            val expected = ex
+            assertEquals(expected,result)
+        }
+    }
+
+    @Test
+    fun `Given throw exception when getting upcoming movies`(){
+        runTest {
+            //Given
+            val ex = Result.failure<List<Movie>>(UnknownHostException("No internet connection"))
+            whenever(remote.getUpcoming()).thenReturn(ex)
+            //Then
+            val result = underTest.getUpcoming()
+            //When
+            val expected = ex
+            assertEquals(expected,result)
+        }
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `Given no internet connection when getting now playing movies then return local data`() {

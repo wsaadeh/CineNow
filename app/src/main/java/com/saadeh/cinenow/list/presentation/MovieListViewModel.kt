@@ -180,7 +180,7 @@ class MovieListViewModel(
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
-                val listService = RetrofitClient.retrofitInstance.create(ListService::class.java)
+                //val listService = RetrofitClient.retrofitInstance.create(ListService::class.java)
 
                 val application = checkNotNull(extras[APPLICATION_KEY])
                 return MovieListViewModel(
