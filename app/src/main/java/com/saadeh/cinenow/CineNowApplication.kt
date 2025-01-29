@@ -14,7 +14,7 @@ import com.saadeh.cinenow.list.data.remote.ListService
 import com.saadeh.cinenow.list.data.remote.MovieListRemoteDataSource
 
 class CineNowApplication: Application() {
-    val db by lazy {
+    private val db by lazy {
         Room.databaseBuilder(
             applicationContext,
             CineNowDatabase::class.java,"database-cine-now"

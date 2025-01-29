@@ -1,6 +1,6 @@
 package com.saadeh.cinenow.common.data.local
 
-import android.graphics.Movie
+//import android.graphics.Movie
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
