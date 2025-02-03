@@ -7,21 +7,23 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.saadeh.cinenow.CineNowApplication
-import com.saadeh.cinenow.common.data.remote.RetrofitClient
-import com.saadeh.cinenow.list.data.remote.ListService
+import com.saadeh.cinenow.di.DispatcherIO
 import com.saadeh.cinenow.list.data.MovieListRepository
 import com.saadeh.cinenow.list.presentation.ui.MovieListUiState
 import com.saadeh.cinenow.list.presentation.ui.MovieUiData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
+import javax.inject.Inject
 
-class MovieListViewModel(
+@HiltViewModel
+class MovieListViewModel @Inject constructor(
     private val repository: MovieListRepository,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    @DispatcherIO private val dispatcher: CoroutineDispatcher //= Dispatchers.IO
 ) : ViewModel() {
 
     private val _uiNowPlaying = MutableStateFlow(MovieListUiState())
@@ -176,7 +178,7 @@ class MovieListViewModel(
         }
     }
 
-    companion object {
+/*    companion object {
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
@@ -188,5 +190,5 @@ class MovieListViewModel(
                 ) as T
             }
         }
-    }
+    }*/
 }

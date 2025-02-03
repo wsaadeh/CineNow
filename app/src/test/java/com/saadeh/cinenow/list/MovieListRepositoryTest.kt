@@ -1,15 +1,10 @@
 package com.saadeh.cinenow.list
 
-import android.net.ipsec.ike.exceptions.InvalidKeException
-import androidx.compose.ui.text.font.emptyCacheFontFamilyResolver
 import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.saadeh.cinenow.common.data.local.MovieCategory
 import com.saadeh.cinenow.common.data.model.Movie
-import com.saadeh.cinenow.list.data.LocalDataSource
 import com.saadeh.cinenow.list.data.MovieListRepository
-import com.saadeh.cinenow.list.data.local.MovieListLocalDataSource
 import com.saadeh.cinenow.list.data.remote.MovieListRemoteDataSource
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -17,7 +12,6 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.net.UnknownHostException
-import java.security.InvalidKeyException
 
 
 class MovieListRepositoryTest {

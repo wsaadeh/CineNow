@@ -1,7 +1,7 @@
 package com.saadeh.cinenow.list
 
 import com.saadeh.cinenow.common.data.model.Movie
-import com.saadeh.cinenow.list.data.LocalDataSource
+import com.saadeh.cinenow.list.data.local.LocalDataSource
 
 class FakeMovieListLocalDataSource : LocalDataSource {
 

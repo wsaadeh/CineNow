@@ -1,13 +1,13 @@
 package com.saadeh.cinenow.detail.data
 
 import com.saadeh.cinenow.common.data.model.Movie
-import com.saadeh.cinenow.detail.data.local.MovieDetailLocalDataSource
-import com.saadeh.cinenow.detail.data.remote.MovieDetailRemoteDataSource
-import com.saadeh.cinenow.list.data.remote.MovieListRemoteDataSource
+import com.saadeh.cinenow.detail.data.local.DetailLocalDataSource
+import com.saadeh.cinenow.detail.data.remote.DetailRemoteDataSource
+import javax.inject.Inject
 
-class MovieDetailRepository(
-    private val localDataSource: MovieDetailLocalDataSource,
-    private val remoteDataSource: MovieDetailRemoteDataSource
+class MovieDetailRepository @Inject constructor(
+    private val localDataSource: DetailLocalDataSource,
+    private val remoteDataSource: DetailRemoteDataSource
 ) {
     suspend fun getMovieBYId(id: String): Result<Movie?>{
         return try {

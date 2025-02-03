@@ -41,7 +41,7 @@ class MovieListViewModelTest {
         )
     }
 
-    @Before
+/*    @Before
     fun `setUp test of cinenow application in companion object`(){
 
         //Setup the application mock to return the mocked repository
@@ -50,7 +50,7 @@ class MovieListViewModelTest {
         //Create the factory
         factory = MovieListViewModel.Factory
 
-    }
+    }*/
 
     @Test
     fun `Test create viewModel`(){

@@ -26,13 +26,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.saadeh.cinenow.list.presentation.MovieListViewModel
 
 @Composable
-fun MovieListScreen(navController: NavHostController,
-                    viewModel: MovieListViewModel) {
+fun MovieListScreen(
+    navController: NavHostController,
+    viewModel: MovieListViewModel = hiltViewModel()
+) {
     val nowPlayingMovies by viewModel.uiNowPlaying.collectAsState()
     val popularMovies by viewModel.uiPopular.collectAsState()
     val topRatedMovies by viewModel.uiTopRated.collectAsState()
@@ -43,7 +46,7 @@ fun MovieListScreen(navController: NavHostController,
         popularMovies = popularMovies,
         topRatedMovies = topRatedMovies,
         upcomingMovies = upcomingMovies
-        ){ itemClicked ->
+    ) { itemClicked ->
         navController.navigate(route = "movieDetail/${itemClicked.id}")
     }
 }
@@ -115,15 +118,14 @@ private fun MovieSession(
         )
         Spacer(modifier = Modifier.size(8.dp))
 
-        if (movieListUiState.isLoading){
+        if (movieListUiState.isLoading) {
 
-        }else if (movieListUiState.isError){
+        } else if (movieListUiState.isError) {
             Text(
                 color = Color.Red,
                 text = movieListUiState.errorMessage ?: "",
             )
-        }
-        else{
+        } else {
             MovieList(movieList = movieListUiState.list, onClick = onClick)
         }
 

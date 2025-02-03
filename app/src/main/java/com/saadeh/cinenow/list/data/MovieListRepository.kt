@@ -1,16 +1,13 @@
 package com.saadeh.cinenow.list.data
 
-import android.accounts.NetworkErrorException
-import androidx.room.Dao
 import com.saadeh.cinenow.common.data.model.Movie
-import com.saadeh.cinenow.common.data.remote.model.MovieResponse
-import com.saadeh.cinenow.list.data.local.MovieListLocalDataSource
-import com.saadeh.cinenow.list.data.remote.ListService
-import com.saadeh.cinenow.list.data.remote.MovieListRemoteDataSource
+import com.saadeh.cinenow.list.data.local.LocalDataSource
+import com.saadeh.cinenow.list.data.remote.RemoteDataSource
+import javax.inject.Inject
 
-class MovieListRepository(
-    private val local: LocalDataSource,//MovieListLocalDataSource,
-    private val remote: MovieListRemoteDataSource,
+class MovieListRepository @Inject constructor(
+    private val local: LocalDataSource,
+    private val remote: RemoteDataSource,
 ) {
     suspend fun getNowPlaying(): Result<List<Movie>?> {
         return try {

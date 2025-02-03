@@ -3,12 +3,13 @@ package com.saadeh.cinenow.detail.data.remote
 import android.accounts.NetworkErrorException
 import com.saadeh.cinenow.common.data.local.MovieCategory
 import com.saadeh.cinenow.common.data.model.Movie
+import javax.inject.Inject
 
 
-class MovieDetailRemoteDataSource(
+class MovieDetailRemoteDataSource @Inject constructor(
     private val detailService: DetailService
-) {
-    suspend fun getMovieById(id: String): Result<Movie?>{
+) : DetailRemoteDataSource {
+    override suspend fun getMovieById(id: String): Result<Movie?>{
 
         return try {
             val response = detailService.getMovieById(id)

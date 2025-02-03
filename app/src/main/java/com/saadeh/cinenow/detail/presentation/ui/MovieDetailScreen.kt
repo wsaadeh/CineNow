@@ -20,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.saadeh.cinenow.common.data.model.Movie
@@ -31,7 +32,7 @@ import com.saadeh.cinenow.ui.theme.CineNowTheme
 fun MovieDetailScreen(
     movieId: String,
     navHostController: NavHostController,
-    viewModel: MovieDetailViewModel
+    viewModel: MovieDetailViewModel = hiltViewModel()
 ) {
     val movieDto = viewModel.uiMovieById.collectAsState()
     viewModel.fetchMovieById(movieId)

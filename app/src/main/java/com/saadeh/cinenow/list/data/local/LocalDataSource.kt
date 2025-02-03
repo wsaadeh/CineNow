@@ -1,4 +1,4 @@
-package com.saadeh.cinenow.list.data
+package com.saadeh.cinenow.list.data.local
 
 import com.saadeh.cinenow.common.data.model.Movie
 

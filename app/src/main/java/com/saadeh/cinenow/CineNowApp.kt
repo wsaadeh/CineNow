@@ -12,14 +12,14 @@ import com.saadeh.cinenow.list.presentation.MovieListViewModel
 import com.saadeh.cinenow.list.presentation.ui.MovieListScreen
 
 @Composable
-fun CineNowApp(
-    listViewModel: MovieListViewModel,
-    detailViewModel: MovieDetailViewModel
-) {
+fun CineNowApp()
+/*    listViewModel: MovieListViewModel,
+    detailViewModel: MovieDetailViewModel*/
+ {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "movieList" ){
         composable(route = "movieList"){
-            MovieListScreen(navController, listViewModel)
+            MovieListScreen(navController)//, listViewModel
         }
         composable(
             route = "movieDetail" + "/{itemId}",
@@ -28,7 +28,7 @@ fun CineNowApp(
             })
         ){ backStackEntry ->
             val movieId = requireNotNull(backStackEntry.arguments?.getString("itemId"))
-            MovieDetailScreen(movieId, navController, detailViewModel)
+            MovieDetailScreen(movieId, navController)//, detailViewModel
         }
     }
 }

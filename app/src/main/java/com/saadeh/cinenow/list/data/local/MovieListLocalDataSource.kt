@@ -4,9 +4,9 @@ import com.saadeh.cinenow.common.data.local.MovieCategory
 import com.saadeh.cinenow.common.data.local.MovieDao
 import com.saadeh.cinenow.common.data.local.MovieEntity
 import com.saadeh.cinenow.common.data.model.Movie
-import com.saadeh.cinenow.list.data.LocalDataSource
+import javax.inject.Inject
 
-class MovieListLocalDataSource(
+class MovieListLocalDataSource @Inject constructor(
     private val dao: MovieDao
 ) : LocalDataSource {
 

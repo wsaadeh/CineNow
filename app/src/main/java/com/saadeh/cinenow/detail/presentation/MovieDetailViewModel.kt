@@ -13,22 +13,28 @@ import com.saadeh.cinenow.common.data.remote.RetrofitClient
 import com.saadeh.cinenow.common.data.remote.model.MovieDto
 import com.saadeh.cinenow.detail.data.MovieDetailRepository
 import com.saadeh.cinenow.detail.data.remote.DetailService
+import com.saadeh.cinenow.di.DispatcherIO
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
+import javax.inject.Inject
 
-class MovieDetailViewModel(
-    private val repository: MovieDetailRepository
+@HiltViewModel
+class MovieDetailViewModel @Inject constructor(
+    private val repository: MovieDetailRepository,
+    @DispatcherIO private val dispatcher: CoroutineDispatcher //= Dispatchers.IO
 ) : ViewModel() {
     private val _uiMovieById = MutableStateFlow<Movie?>(null)
     val uiMovieById: StateFlow<Movie?> = _uiMovieById
 
     fun fetchMovieById(movieId: String) {
 //        if (_uiMovieById.value == null) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {//Dispatchers.IO
             val response = repository.getMovieBYId(movieId)
 
             if (response.isSuccess) {
@@ -53,14 +59,14 @@ class MovieDetailViewModel(
 //        }
     }
 
-    fun cleanMovieId() {
+/*    fun cleanMovieId() {
         viewModelScope.launch {
             delay(1000)
             _uiMovieById.value = null
         }
-    }
+    }*/
 
-    companion object {
+/*    companion object {
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
@@ -72,6 +78,6 @@ class MovieDetailViewModel(
                 ) as T
             }
         }
-    }
+    }*/
 
 }
